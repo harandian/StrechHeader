@@ -11,20 +11,31 @@ import UIKit
 class MyTableViewController: UITableViewController {
    
     @IBOutlet var myTable: UITableView!
-
+    var newsItems: [NewsItem] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-//        myTable.reloadData()
         
         myTable.rowHeight = UITableViewAutomaticDimension
         myTable.estimatedRowHeight = 100
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+       
+        let news1 = NewsItem(withType: .world)
+        newsItems.append(news1)
+        let news2 = NewsItem(withType: .europe)
+        newsItems.append(news2)
+        let news3 = NewsItem(withType: .americas)
+        newsItems.append(news3)
+        let news4 = NewsItem(withType: .middleEast)
+        newsItems.append(news4)
+        let news5 = NewsItem(withType: .africa)
+        newsItems.append(news5)
+        let news6 = NewsItem(withType: .asiaPacific)
+        newsItems.append(news6)
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,11 +57,20 @@ class MyTableViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
+    
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? MyTableViewCell {
+            
+            let newsForRow = newsItems[indexPath.row]
+            cell.header.textColor = newsForRow.newsColor
+            cell.body.text = newsForRow.newsBody
+            cell.header.text = newsForRow.newsHeadLine
+            
+            return cell
 
+        }
         
-        return cell
+        
+        return UITableViewCell()
     }
  
 

@@ -14,6 +14,7 @@
 		720D17EC1F55ED3C00B64CB6 /* Stretch_My_HeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720D17EB1F55ED3C00B64CB6 /* Stretch_My_HeaderTests.swift */; };
 		720D17F71F55EE3900B64CB6 /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720D17F61F55EE3900B64CB6 /* MyTableViewCell.swift */; };
 		720D17F91F55EEFB00B64CB6 /* MyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720D17F81F55EEFB00B64CB6 /* MyTableViewController.swift */; };
+		720D17FB1F56054A00B64CB6 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720D17FA1F56054A00B64CB6 /* NewsItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		720D17ED1F55ED3C00B64CB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		720D17F61F55EE3900B64CB6 /* MyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		720D17F81F55EEFB00B64CB6 /* MyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTableViewController.swift; sourceTree = "<group>"; };
+		720D17FA1F56054A00B64CB6 /* NewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			children = (
 				720D17D61F55ED3C00B64CB6 /* AppDelegate.swift */,
 				720D17F81F55EEFB00B64CB6 /* MyTableViewController.swift */,
+				720D17FA1F56054A00B64CB6 /* NewsItem.swift */,
 				720D17F61F55EE3900B64CB6 /* MyTableViewCell.swift */,
 				720D17DA1F55ED3C00B64CB6 /* Main.storyboard */,
 				720D17DD1F55ED3C00B64CB6 /* Assets.xcassets */,
@@ -205,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				720D17D71F55ED3C00B64CB6 /* AppDelegate.swift in Sources */,
+				720D17FB1F56054A00B64CB6 /* NewsItem.swift in Sources */,
 				720D17F71F55EE3900B64CB6 /* MyTableViewCell.swift in Sources */,
 				720D17F91F55EEFB00B64CB6 /* MyTableViewController.swift in Sources */,
 			);

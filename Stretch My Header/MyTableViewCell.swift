@@ -12,16 +12,18 @@ class MyTableViewCell: UITableViewCell {
    
     @IBOutlet weak var header: UILabel!
     @IBOutlet weak var body: UILabel!
+   
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        header.text = "World"
-        body.text = "Climate change protests, divestments meet fossil fuels realitie"
+//        header.text = "World"
+//        body.text = "Climate change protests, divestments meet fossil fuels realitie"
         
         self.body?.numberOfLines = 0
         self.body?.lineBreakMode = NSLineBreakMode.byWordWrapping
         
+
         
         
     }
