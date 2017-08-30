@@ -25,8 +25,9 @@ class MyTableViewController: UITableViewController {
         headerView = tableView.tableHeaderView
         tableView.tableHeaderView = nil
         tableView.addSubview(headerView)
-        tableView.contentInset = UIEdgeInsets(top: headerHeight, left: 0, bottom: 0, right: 0)
-        tableView.contentOffset = CGPoint(x: 0, y: -headerHeight)
+        let effectiveHeight = headerHeight-headerCutOff/2
+        tableView.contentInset = UIEdgeInsets(top: effectiveHeight, left: 0, bottom: 0, right: 0)
+        tableView.contentOffset = CGPoint(x: 0, y: -effectiveHeight)
        
 
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -39,21 +40,9 @@ class MyTableViewController: UITableViewController {
         
         headerSetup()
         updateHeaderView()
+        setUpNewsItems()
         
-        let news1 = NewsItem(withType: .world)
-        newsItems.append(news1)
-        let news2 = NewsItem(withType: .europe)
-        newsItems.append(news2)
-        let news3 = NewsItem(withType: .americas)
-        newsItems.append(news3)
-        let news4 = NewsItem(withType: .middleEast)
-        newsItems.append(news4)
-        let news5 = NewsItem(withType: .africa)
-        newsItems.append(news5)
-        let news6 = NewsItem(withType: .asiaPacific)
-        newsItems.append(news6)
-        
-        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -179,9 +168,12 @@ class MyTableViewController: UITableViewController {
     }
     
     func updateHeaderView() {
-        var headerRect = CGRect(x: 0, y: -headerHeight, width: tableView.frame.width, height: headerHeight)
         
-        if tableView.contentOffset.y < -headerHeight {
+        let effectiveHeight = headerHeight-headerCutOff/2
+
+        var headerRect = CGRect(x: 0, y: -effectiveHeight, width: tableView.frame.width, height: headerHeight)
+        
+        if tableView.contentOffset.y < -effectiveHeight {
             headerRect.origin.y = tableView.contentOffset.y
             headerRect.size.height = -tableView.contentOffset.y
         }
@@ -197,6 +189,21 @@ class MyTableViewController: UITableViewController {
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateHeaderView()
+    }
+    
+    func setUpNewsItems() {
+        let news1 = NewsItem(withType: .world)
+        newsItems.append(news1)
+        let news2 = NewsItem(withType: .europe)
+        newsItems.append(news2)
+        let news3 = NewsItem(withType: .americas)
+        newsItems.append(news3)
+        let news4 = NewsItem(withType: .middleEast)
+        newsItems.append(news4)
+        let news5 = NewsItem(withType: .africa)
+        newsItems.append(news5)
+        let news6 = NewsItem(withType: .asiaPacific)
+        newsItems.append(news6)
     }
   
 }
