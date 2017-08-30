@@ -10,9 +10,14 @@ import UIKit
 
 class myHeader: UITableViewCell {
 
+   // @IBOutlet weak var headerImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+//        headerImage.ima = UIImage (named: "bg-header")
         // Initialization code
+    //    self.headerImage.image = UIImage (named: "bg-header")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

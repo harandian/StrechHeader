@@ -10,18 +10,36 @@ import UIKit
 
 class MyTableViewController: UITableViewController {
    
-    @IBOutlet var myTable: UITableView!
+ //   @IBOutlet weak var headerView: UIView!
+    //@IBOutlet var myTable: UITableView!
+    @IBOutlet weak var dateLabel: UILabel!
+    private let headerHeight:CGFloat = 300.0
+    private let headerCutOff:CGFloat = 80.0
     var newsItems: [NewsItem] = []
+    var headerView: UIView!
+    var headerMaskLayer: CAShapeLayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
-        myTable.rowHeight = UITableViewAutomaticDimension
-        myTable.estimatedRowHeight = 100
+        headerView = tableView.tableHeaderView
+        tableView.tableHeaderView = nil
+        tableView.addSubview(headerView)
+        tableView.contentInset = UIEdgeInsets(top: headerHeight, left: 0, bottom: 0, right: 0)
+        tableView.contentOffset = CGPoint(x: 0, y: -headerHeight)
+       
+
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-       
+        headerMaskLayer = CAShapeLayer()
+        headerMaskLayer.fillColor = UIColor.black.cgColor
+        headerView.layer.mask = headerMaskLayer
+        
+        headerSetup()
+        updateHeaderView()
+        
         let news1 = NewsItem(withType: .world)
         newsItems.append(news1)
         let news2 = NewsItem(withType: .europe)
@@ -55,7 +73,31 @@ class MyTableViewController: UITableViewController {
         return newsItems.count
     }
 
-
+    
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        
+//       
+//        if let tempCell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as? myHeader {
+//          
+//            let headerSize = UIImage nam
+//            return headerSize
+//        }
+//        
+//
+//        return 300
+//    }
+//    
+//    
+//    
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        if let headerCell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as? myHeader {
+//            
+//            return headerCell
+//        }
+//        
+//        return UITableViewCell()
+//    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? MyTableViewCell {
@@ -72,7 +114,7 @@ class MyTableViewController: UITableViewController {
         
         return UITableViewCell()
     }
- 
+
 
     /*
     // Override to support conditional editing of the table view.
@@ -127,5 +169,34 @@ class MyTableViewController: UITableViewController {
         return true
     }
     
+    func headerSetup()  {
+        
+        let dateStyle = DateFormatter()
+        dateStyle.dateStyle = .medium
+        let timeString = "\(dateStyle.string(from: Date () as Date))"
+        dateLabel.text = timeString
+      
+    }
+    
+    func updateHeaderView() {
+        var headerRect = CGRect(x: 0, y: -headerHeight, width: tableView.frame.width, height: headerHeight)
+        
+        if tableView.contentOffset.y < -headerHeight {
+            headerRect.origin.y = tableView.contentOffset.y
+            headerRect.size.height = -tableView.contentOffset.y
+        }
+        headerView.frame = headerRect
+        
+        let path = UIBezierPath()
+        path.move(to: CGPoint (x: 0, y: 0))
+        path.addLine(to: CGPoint(x: headerView.frame.width, y:0))
+        path.addLine(to: CGPoint(x: headerView.frame.width, y: headerView.frame.height))
+        path.addLine(to: CGPoint(x: 0, y: headerHeight-headerCutOff))
+        headerMaskLayer?.path = path.cgPath
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateHeaderView()
+    }
   
 }

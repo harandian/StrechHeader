@@ -17,15 +17,9 @@ class MyTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-//        header.text = "World"
-//        body.text = "Climate change protests, divestments meet fossil fuels realitie"
-        
         self.body?.numberOfLines = 0
         self.body?.lineBreakMode = NSLineBreakMode.byWordWrapping
-        
 
-        
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
